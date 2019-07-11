@@ -1,0 +1,48 @@
+/*
+Given a positive integer N, calculate the sum of all prime numbers between 1 and N(inclusive).
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+long long sumofallprime(int n) {
+    bool prime[n+1];
+    long long sum = 0;
+    memset(prime, true, sizeof(prime));
+    
+    
+    for(int i = 2; i * i <= n; i++) {
+        
+        if(prime[i] == true) {
+            for(int j = i * i; j <= n; j = j + i) {
+                prime[j] = false;
+            }
+        }
+    }
+    
+    for(int i = 2; i <= n; i++) {
+        if(prime[i] == true) {
+            sum = sum + i;
+        }
+    }
+    
+    return sum;
+}
+
+int main() {
+
+    int n;
+    cin >> n;
+    
+    cout << sumofallprime(n) << endl;
+
+	return 0;
+}
+
+/*
+INPUT:
+12
+
+OUTPUT:
+28
+*/
