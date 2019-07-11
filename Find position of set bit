@@ -1,0 +1,44 @@
+/*
+Given a number having only one ‘1’ and all other ’0’s in its binary representation, find position of the only set bit. 
+If there is only one '1' bit then print that position else print -1. Position of  set bit '1' should be counted starting 
+with 1 from LSB side in binary representation of the number.
+*/
+
+#include <iostream>
+using namespace std;
+
+int findsetbit(int n) 
+{
+    int pos = -1;
+    int count = 0;
+    int flag = 0;
+    while(n) {
+        count++;
+        if(n & 1 && flag == 0) {
+            flag = 1;
+            pos = count;
+        } else if(n & 1 && flag == 1) {
+            return -1;
+        }
+        n = n >> 1;
+    }
+    
+    return pos;
+}
+
+int main() {
+    
+    int n;
+    cin >> n;
+    cout << findsetbit(n) << endl;
+
+	return 0;
+}
+
+/*
+INPUT:
+256
+
+OUTPUT:
+9
+*/
