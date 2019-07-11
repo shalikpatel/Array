@@ -1,0 +1,74 @@
+/*
+Given two sorted arrays A and B. The task is to complete the function max_path_sum that takes 4 argument, 
+the first two arguments represent the 2 arrays A[] and B[] and the last two arguments l1, l2 denote 
+the size of array A and B respectively. The function returns the sum of the maximum sum path to reach 
+from beginning of any array to end of any of the two arrays .
+
+Note: You can switch from one array to another array only at common elements.
+
+*/
+
+#include<bits/stdc++.h>
+using namespace std;
+int max_path_sum(int [], int [], int , int );
+int main()
+{
+    int N,M;
+    cin>>N>>M;
+    fflush(stdin);
+    int a[N],b[M];
+    for(int i=0;i<N;i++)
+        cin>>a[i];
+    for(int i=0;i<M;i++)
+        cin>>b[i];
+    int result = max_path_sum(a,b,N,M);
+    cout<<result<<endl;
+        
+    return 0;
+}
+
+int max_path_sum(int A[], int B[], int l1, int l2)
+{
+    //Your code here
+    int sum = 0;
+    int sum2 = 0;
+    int i = 0;
+    int j = 0; 
+    while(i < l1 && j < l2) {
+        if(A[i] == B[j]) {
+            sum = max(sum , sum2) + A[i];
+            sum2 = sum;
+            i++;
+            j++;
+        } else {
+            if(A[i] > B[j]) {
+                sum2 = sum2 + B[j];
+                j++;
+            } else {
+                sum = sum + A[i];
+                i++;
+            }
+        }       
+    }  
+       
+    while(i < l1) {
+        sum = sum + A[i];
+        i++;
+    }
+    while(j < l2) {
+        sum2 = sum2 + B[j];
+        j++;
+    }
+    
+    return max(sum, sum2);
+}
+
+/*
+INPUT:
+5 4
+2 3 7 10 12
+1 5 7 8 
+
+OUTPUT:
+35
+*/
