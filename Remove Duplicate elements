@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void removeduplicate(int arr[], int n)
+{
+    unordered_map<int , int> m;
+    for(int i = 0; i < n; i++) {
+        if(m[arr[i]] == 1) {
+            
+        } else {
+            m[arr[i]]++;
+        }
+    }
+    for(int i = 0; i < n; i++) {
+        if(m[arr[i]] == 1) {
+            cout << arr[i] << " ";
+        }
+        m[arr[i]]--;
+    }
+    cout << endl;
+}
+
+int main() {
+    int n; 
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+   removeduplicate(arr, n);
+
+	return 0;
+}
