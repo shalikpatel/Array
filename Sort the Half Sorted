@@ -1,0 +1,71 @@
+/*
+Given an integer array of which both first half and second half are sorted. 
+The task is to merge two sorted halves of the array into a single sorted array.
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void fullsortedArray(int arr[], int n)
+{
+    int mid = 1;
+    for(int i = 1; i < n; i++) {
+        if(arr[i-1] <= arr[i]) {
+            mid++;
+        } else {
+            break;
+        }
+    }
+    int left[mid+1];
+    int right[n-mid+1];
+    int i , j;
+    for(i = 0; i < mid; i++) {
+        left[i] = arr[i];
+    }
+    left[mid] = INT_MAX;
+    
+    for(j = 0; j < n-mid; j++) {
+        right[j] = arr[i];
+        i++;
+    }
+    right[n-mid] = INT_MAX;
+    i = 0;
+    j = 0;
+    for(int k = 0; k < n; k++) {
+        if(left[i] > right[j]) {
+            arr[k] = right[j];
+            j++;
+        } else {
+            arr[k] = left[i];
+            i++;
+        }
+    }
+    
+    for(i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    fullsortedArray(arr, n);
+
+	return 0;
+}
+
+/*
+INPUT:
+17
+73 141 197 200 328 452 771 883 935 54 99 393 495 583 611 803 848
+
+OUTPUT:
+54 73 99 141 197 200 328 393 452 495 583 611 771 803 848 883 935 
+*/
