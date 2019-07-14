@@ -1,0 +1,48 @@
+/*
+Given a matrix mat[][] of size N x N. The task is to print the elements of the matrix in the snake pattern.
+*/
+
+#include <iostream>
+#define N 1000
+using namespace std;
+
+
+void printSnackForm(int arr[N][N], int n)
+{
+     for(int i = 0; i < n; i++) {
+         for(int j = 0; j < n; j++) {
+             if(i % 2 == 0) {
+                 cout << arr[i][j] << " ";
+             } else {
+                 cout << arr[i][n-j-1] << " ";
+             }
+         }
+     }
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[N][N];
+    for(int i = 0; i < n; i++) {
+        for(int j = 0; j < n; j++) {
+            cin >> arr[i][j];
+        }
+    }
+    
+    printSnackForm(arr, n);
+    cout << endl;
+
+	return 0;
+}
+
+/*
+INPUT:
+3
+45 48 54 
+21 89 87 
+70 78 15
+
+OUTPUT:
+45 48 54 87 89 21 70 78 15
+*/
