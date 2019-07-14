@@ -1,0 +1,46 @@
+/*
+Given a Binary Heap of size N, write a program to calculate the height of the Heap.
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int left(int i) 
+{
+    return (2 * i + 1);
+}
+
+int heightofHeap(int arr[], int n)
+{
+    int i = 0;
+    int h = 0;
+    while(i < n) {
+        h++;
+        i = left(i);
+    }
+    
+    return h-1;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    cout << heightofHeap(arr, n) << endl;
+
+	return 0;
+}
+
+/*
+INPUT:
+5
+1 2 3 4 5
+
+OUTPUT:
+2
+
+*/
