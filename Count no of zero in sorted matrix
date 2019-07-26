@@ -1,0 +1,15 @@
+int countZeroes(int A[MAX][MAX],int N)
+{    
+    int k = N * N;
+    int p = N;
+    for(int i = 0; i < N; i++) {
+        for(int j = p-1; j >= 0; j--) {
+            if(A[i][j] == 1) {
+                k = k - (N - i);
+                p--;
+            }
+        }
+    }
+    
+    return k;
+}
