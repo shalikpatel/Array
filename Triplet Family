@@ -1,0 +1,32 @@
+/*
+Problem:
+Given an array A of integers. Find three numbers such that sum of two elements 
+equals the third element and return the triplet in a container result, 
+if no such triplet is found return the container as empty.
+*/
+
+vector<int> findTriplet(int arr[], int n)
+{
+    vector<int> result;
+    sort(arr, arr+n);
+    for(int i = n-1; i >= 0; i--) {
+        int l = 0;
+        int r = i-1;
+        while(l < r) {
+            if(arr[l] + arr[r] == arr[i]) {
+                result.push_back(arr[l]);
+                result.push_back(arr[r]);
+                result.push_back(arr[i]);
+                l++;
+                r--;
+                return result;
+            } else if(arr[l] + arr[r] > arr[i]) {
+                r--;
+            } else {
+                l++;
+            }
+        }
+    }
+    
+    return result;
+}
