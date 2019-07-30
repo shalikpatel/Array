@@ -1,0 +1,48 @@
+/*
+Given an array of positive integers. Your task is to find the leaders in the array.
+Note: An element of array is leader if it is greater than or equal to all the 
+elements to its right side. Also, the rightmost element is always a leader. 
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+void leaders(int arr[], int n)
+{
+    stack<int> s;
+    s.push(arr[n-1]);
+    for(int i = n-2; i >= 0; i--) {
+        if(arr[i] >= s.top()) {
+            s.push(arr[i]);
+        }
+    }
+    
+    while(!s.empty()) {
+        cout << s.top() << " ";
+        s.pop();
+    }
+    cout << endl;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    leaders(arr, n);
+
+	return 0;
+}
+
+/*
+INPUT:
+6
+16 17 4 3 5 2
+
+OUTPUT:
+17 5 2
+
+*/
