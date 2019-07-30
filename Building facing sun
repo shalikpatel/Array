@@ -40,3 +40,15 @@ int main() {
 
 	return 0;
 }
+
+/*
+INPUT:
+5
+7 4 8 2 9
+
+OUTPUT:
+3
+
+Explanation:
+ Building with height 7, 8 and 9 will recieve the sunlight during sunrise.
+ */
