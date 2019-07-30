@@ -1,0 +1,42 @@
+/*
+Monu lives in a society which is having high rise buildings. 
+This is the time of sunrise and monu wants see the buildings 
+receiving the sunlight. Help him in counting the number of 
+buildings recieving the sunlight.
+Given an array arr[] representing heights of buildings. 
+You have to count the buildings which will see the sunrise 
+(Assume : Sun rise on the side of array starting point).
+*/
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int SunFacing(int arr[], int n)
+{
+    stack<int> st;
+    st.push(0);
+    for(int i = 0; i < n; i++) {
+        if(arr[i] > arr[st.top()]) {
+            st.push(i);
+        }
+    }
+    
+    // For printing building numbers you can simply print all element of stack
+    // in reverse order of you can use vector in place of stack.
+    
+    return st.size();
+}
+
+int main() {
+    
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    cout << SunFacing(arr, n) << endl;
+
+	return 0;
+}
