@@ -1,0 +1,40 @@
+#include<iostream>
+using namespace std;
+
+long reverse(long n)
+{
+    long rev = 0;
+    while(n ) {
+        int r = n % 10;
+        rev = rev * 10 + r;
+        n = n/10;
+    }
+    
+    return rev;
+}
+
+long power(long n, long r, long a)
+{
+    if(r == 0) {
+        return 1;
+    } else if (r % 2 == 0) {
+        long temp = power(n, r/2, a);
+        return (temp * temp) % a;
+    } else {
+        return (power(n, r-1, a) * n) % a;
+    }
+}
+
+int main() {
+	//code
+	int t;
+	cin >> t;
+	while(t--) {
+	    long n;
+	    cin >> n;
+	    long r = reverse(n);
+	    long a = 1000000007;
+	    cout << power(n, r, a) << endl;
+	}
+	return 0;
+}
