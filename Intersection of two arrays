@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void intersection(int a[], int b[], int n, int m)
+{
+    map<int, int> mp;
+    for(int i = 0; i < n; i++) {
+        mp[a[i]] = 1;
+    }
+    for(int i = 0; i < m; i++) {
+        if(mp[b[i]] == 1) {
+            mp[b[i]] = 2;
+        }
+    }
+    int flag = 0;
+    for(auto it = mp.begin(); it != mp.end(); it++) {
+        if(it->second > 1) {
+            flag = 1;
+            cout << it->first << " ";
+        }
+    } 
+    if(flag == 0) {
+        cout << 0 ;
+    }
+    cout << endl;
+}
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    int a[n];
+    int b[m];
+    for(int i = 0; i < n; i++) {
+        cin >> a[i];
+    }
+    for(int j = 0; j < m; j++) {
+        cin >> b[j];
+    }
+    
+    intersection(a, b, n, m);
+
+    return 0;
+}
