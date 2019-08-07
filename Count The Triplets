@@ -1,0 +1,47 @@
+/*
+Given an array of distinct integers. The task is to count all the triplets 
+such that sum of two elements equals the third element.
+*/
+#include<bits/stdc++.h>
+using namespace std;
+
+int triplets(int arr[], int n)
+{
+    int i, l, r, count = 0;
+    sort(arr, arr+n);
+    for(i = n-1; i > 1; i--) {
+        l = 0;
+        r = i-1;
+        while(l < r) {
+            if(arr[l] + arr[r] == arr[i]) {
+                count ++;
+                l++;
+                r--;
+            } else if(arr[l] + arr[r] > arr[i]) {
+                r--;
+            } else {
+                l++;
+            }
+        }
+    }
+    
+    if(count == 0) {
+        return -1;
+    }
+    
+    return count;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    int arr[n];
+    for(int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+    
+    cout << triplets(arr, n) << endl;
+
+	return 0;
+}
