@@ -1,0 +1,30 @@
+/*
+You are given a sorted array containing only numbers 0 and 1. 
+Find the transition point efficiently. 
+Transition point is a point where "0" ends and "1" begins.
+*/
+
+int binarySearch(int arr[], int start, int end)
+{
+    int mid = (start + end) / 2;
+    if(arr[mid] == 0) {
+        if(arr[mid+1] == 1) {
+            return mid+1;
+        } else {
+            return binarySearch(arr, mid+1, end);
+        }
+    } else {
+        return binarySearch(arr, start, mid-1);
+    }
+}
+
+int transitionPoint(int arr[],int n)
+{
+    if(arr[n-1] == 0) {
+        return -1;
+    }
+    if(arr[0] == 1) {
+        return 1;
+    }
+    return binarySearch(arr, 0, n);
+}
